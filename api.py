@@ -47,7 +47,7 @@ class Quote(Resource):
             elif employment == "project":
                 employment = "'Проектная работа'"
             elif employment == "probation":
-                employment = "'Стажировкаь'"
+                employment = "'Стажировка'"
             elif employment == "volunteer":
                 employment = "'Волонтерство'"
             empl_condition = "employment = " + employment
