@@ -1,0 +1,19 @@
+{
+  "id": "98765432",
+  "name": "Senior Python Developer",
+  "employer": {"id": "42", "name": "Example Tech"},
+  "area": {"id": "1", "name": "Москва"},
+  "experience": {"id": "between3And6", "name": "От 3 до 6 лет"},
+  "employment": {"id": "full", "name": "Полная занятость"},
+  "salary": {"from": 250000, "to": 350000, "currency": "RUR", "gross": false},
+  "key_skills": [
+    {"name": "Python 3"},
+    {"name": "Postgres"},
+    {"name": "K8s"},
+    {"name": "Python"}
+  ],
+  "alternate_url": "https://hh.ru/vacancy/98765432",
+  "published_at": "2026-09-01T10:30:00+0300",
+  "archived": false
+}
+

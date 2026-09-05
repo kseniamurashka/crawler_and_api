@@ -1,0 +1,54 @@
+x-app-environment: &app-environment
+  DATABASE_URL: postgresql+psycopg://job_market:job_market@db:5432/job_market
+  HH_SEARCH_TEXT: ${HH_SEARCH_TEXT:-python}
+  HH_AREA: ${HH_AREA:-113}
+  HH_PAGES: ${HH_PAGES:-3}
+  COLLECT_INTERVAL_MINUTES: ${COLLECT_INTERVAL_MINUTES:-60}
+  REQUEST_DELAY_SECONDS: ${REQUEST_DELAY_SECONDS:-0.25}
+  APP_USER_AGENT: "${APP_USER_AGENT:-job-market-observer/2.0 (contact: repository-owner)}"
+  LOG_LEVEL: ${LOG_LEVEL:-INFO}
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: job_market
+      POSTGRES_USER: job_market
+      POSTGRES_PASSWORD: job_market
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U job_market -d job_market"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  migrate:
+    build: .
+    environment: *app-environment
+    depends_on:
+      db:
+        condition: service_healthy
+    command: ["alembic", "upgrade", "head"]
+
+  api:
+    build: .
+    environment: *app-environment
+    ports:
+      - "8000:8000"
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+
+  scheduler:
+    build: .
+    environment: *app-environment
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    command: ["job-market-scheduler"]
+
+volumes:
+  postgres_data:
