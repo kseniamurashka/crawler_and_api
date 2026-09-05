@@ -1,7 +1,6 @@
-"""Backward-compatible ASGI application export."""
+"""Backward-compatible launcher for the FastAPI service."""
 
-from job_market.api import app, run
-
+from job_market.api import run
 
 if __name__ == "__main__":
     run()

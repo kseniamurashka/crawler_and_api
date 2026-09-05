@@ -11,7 +11,6 @@ from job_market.db import get_session
 from job_market.ingestion import parse_hh_vacancy, upsert_vacancy
 from job_market.models import Base
 
-
 FIXTURE = Path(__file__).parent / "fixtures" / "hh_vacancy.json"
 
 

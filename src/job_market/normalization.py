@@ -4,7 +4,6 @@ import re
 from dataclasses import dataclass
 from typing import Any
 
-
 SKILL_ALIASES = {
     "postgres": "postgresql",
     "postgresql": "postgresql",

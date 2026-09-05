@@ -8,7 +8,6 @@ from sqlalchemy.orm import Session
 from job_market.ingestion import parse_hh_vacancy, upsert_vacancy
 from job_market.models import Base, Vacancy, VacancySnapshot
 
-
 FIXTURE = Path(__file__).parent / "fixtures" / "hh_vacancy.json"
 
 

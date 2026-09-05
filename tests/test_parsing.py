@@ -3,7 +3,6 @@ from pathlib import Path
 
 from job_market.ingestion import parse_hh_vacancy
 
-
 FIXTURE = Path(__file__).parent / "fixtures" / "hh_vacancy.json"
 
 

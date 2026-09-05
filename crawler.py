@@ -6,6 +6,5 @@ the original portfolio project do not break.
 
 from job_market.cli import main
 
-
 if __name__ == "__main__":
     main()
